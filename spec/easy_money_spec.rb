@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require "easy_money"
 
 describe EasyMoney do
