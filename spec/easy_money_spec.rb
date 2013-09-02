@@ -59,6 +59,22 @@ describe EasyMoney do
     end
   end
 
+  describe "#positive?" do
+    specify { expect(EasyMoney.new(-1)).to_not be_positive }
+    specify { expect(EasyMoney.new( 0)).to_not be_positive }
+    specify { expect(EasyMoney.new( 1)).to     be_positive }
+  end
+
+  describe "#negative?" do
+    specify { expect(EasyMoney.new(-1)).to     be_negative }
+    specify { expect(EasyMoney.new( 0)).to_not be_negative }
+    specify { expect(EasyMoney.new( 1)).to_not be_negative }
+  end
+
+  describe "#cents" do
+    specify { expect(EasyMoney.new(1.23).cents).to eq(123) }
+  end
+
   describe "#with_currency" do
     specify { expect(EasyMoney.new(one_third).with_currency("NZD")).to eq("$0.33") }
 

@@ -1,59 +1,49 @@
 require "bigdecimal"
 require "currency_data"
 
-class EasyMoney < BigDecimal
+class EasyMoney
   def self.zero
     new 0
   end
 
   def initialize amount
-    super(amount.to_s)
+    @amount = BigDecimal.new(amount.to_s)
   end
 
   def to_s
-    sprintf("%.2f", super)
+    sprintf("%.2f", @amount)
   end
 
-  def inspect
-    "#<EasyMoney:#{super}>"
+  def == other
+    @amount == BigDecimal.new(other.to_s)
   end
-
-  def + other
-    EasyMoney.new(super)
-  end
-
-  def - other
-    EasyMoney.new(super)
-  end
-
-  def / other
-    EasyMoney.new(super)
-  end
-
-  def * other
-    EasyMoney.new(super)
-  end
+  alias_method :eql?, :==
 
   def positive?
-    self > 0
+    @amount > 0
   end
 
   def negative?
-    self < 0
+    @amount < 0
   end
 
   def cents(ratio = 100.0)
-    self * ratio
+    @amount * ratio
   end
+
+  def + other; operation other; end
+  def - other; operation other; end
+  def / other; operation other; end
+  def * other; operation other; end
 
   # FIXME: needs polishing
   def with_currency iso_code
     currency = currency(iso_code) || raise(ArgumentError, "Unknown currency: #{iso_code}")
 
-    left = to_i.to_s. # whole part
-      reverse.scan(/.{1,3}/).map(&:reverse).reverse. # split every 3 digits right-to-left
+    left, right = to_s.split(".")
+
+    left = left.reverse.scan(/.{1,3}/).map(&:reverse).reverse. # split every 3 digits right-to-left
       join(currency.thousands_separator)
-    right = to_s.split(".").last
 
     formatted = [left, currency.decimal_mark, right].join
 
@@ -64,6 +54,16 @@ class EasyMoney < BigDecimal
   end
 
 private
+
+  def operation other
+    operation = caller[0][/`.*'/][1..-2]
+
+    EasyMoney.new(
+      @amount.public_send(
+        operation, BigDecimal.new(other.to_s)
+      )
+    )
+  end
 
   def currency iso_code
     ::CurrencyData.find(iso_code)
