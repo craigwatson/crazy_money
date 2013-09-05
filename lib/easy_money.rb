@@ -2,6 +2,8 @@ require "bigdecimal"
 require "currency_data"
 
 class EasyMoney
+  include Comparable
+
   def self.zero
     new 0
   end
@@ -18,6 +20,10 @@ class EasyMoney
     @amount == BigDecimal.new(other.to_s)
   end
   alias_method :eql?, :==
+
+  def <=> other
+    @amount <=> BigDecimal.new(other.to_s)
+  end
 
   def positive?
     @amount > 0

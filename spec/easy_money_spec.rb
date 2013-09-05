@@ -75,6 +75,14 @@ describe EasyMoney do
     specify { expect(EasyMoney.new(1.23).cents).to eq(123) }
   end
 
+  describe "comparison" do
+    specify { expect(EasyMoney.new(10) > 0).to be_true }
+    specify { expect(EasyMoney.new(10) > EasyMoney.new(0)).to be_true }
+
+    specify { expect([0, EasyMoney.new(10)].max).to eq(10) }
+    specify { expect([EasyMoney.new(0), EasyMoney.new(10)].max).to eq(10) }
+  end
+
   describe "#with_currency" do
     specify { expect(EasyMoney.new(one_third).with_currency("NZD")).to eq("$0.33") }
 
