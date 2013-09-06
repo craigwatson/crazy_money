@@ -33,6 +33,10 @@ class EasyMoney
     @amount < 0
   end
 
+  def opposite
+    self.class.new(self * -1)
+  end
+
   def cents(ratio = 100.0)
     @amount * ratio
   end
@@ -64,7 +68,7 @@ private
   def operation other
     operation = caller[0][/`.*'/][1..-2]
 
-    EasyMoney.new(
+    self.class.new(
       @amount.public_send(
         operation, BigDecimal.new(other.to_s)
       )
