@@ -51,11 +51,12 @@ class EasyMoney
     currency = currency(iso_code) || raise(ArgumentError, "Unknown currency: #{iso_code}")
 
     left, right = to_s.split(".")
+    sign = left.slice!("-")
 
     left = left.reverse.scan(/.{1,3}/).map(&:reverse).reverse. # split every 3 digits right-to-left
       join(currency.thousands_separator)
 
-    formatted = [left, currency.decimal_mark, right].join
+    formatted = [sign, left, currency.decimal_mark, right].join
 
     formatted.public_send(
       currency.symbol_first ? :prepend : :append,

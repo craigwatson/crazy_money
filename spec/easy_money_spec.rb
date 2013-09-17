@@ -97,6 +97,9 @@ describe EasyMoney do
     specify { expect(EasyMoney.new("-13.37").with_currency("NZD")).to eq("$-13.37") }
     specify { expect(EasyMoney.new("0").with_currency("NZD")).to eq("$0.00") }
 
+    specify { expect(EasyMoney.new("123").with_currency("NZD")).to eq("$123.00") }
+    specify { expect(EasyMoney.new("-123").with_currency("NZD")).to eq("$-123.00") }
+
     specify { expect(EasyMoney.new("13.37").with_currency("EUR")).to eq("€13,37") }
     specify { expect(EasyMoney.new("-13.37").with_currency("EUR")).to eq("€-13,37") }
     specify { expect(EasyMoney.new("0").with_currency("EUR")).to eq("€0,00") }
