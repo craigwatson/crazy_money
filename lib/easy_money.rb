@@ -48,7 +48,7 @@ class EasyMoney
 
   # FIXME: needs polishing
   def with_currency iso_code
-    currency = currency(iso_code) || raise(ArgumentError, "Unknown currency: #{iso_code}")
+    currency = currency(iso_code) || raise(ArgumentError, "Unknown currency: #{iso_code.inspect}")
 
     left, right = to_s.split(".")
     sign = left.slice!("-")
