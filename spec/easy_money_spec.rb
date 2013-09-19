@@ -106,6 +106,8 @@ describe EasyMoney do
 
     specify { expect(EasyMoney.new("-1234567.89").with_currency("USD")).to eq("$-1,234,567.89") }
     specify { expect(EasyMoney.new("-1234567.89").with_currency("EUR")).to eq("€-1.234.567,89") }
+
+    specify { expect(EasyMoney.new("13.37").with_currency("SEK")).to eq("13,37kr") }
   end
 end
 

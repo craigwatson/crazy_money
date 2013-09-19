@@ -59,7 +59,7 @@ class EasyMoney
     formatted = [sign, left, currency.decimal_mark, right].join
 
     formatted.public_send(
-      currency.symbol_first ? :prepend : :append,
+      currency.symbol_first ? :prepend : :concat,
       currency.symbol
     )
   end
