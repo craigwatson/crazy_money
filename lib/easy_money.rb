@@ -33,6 +33,10 @@ class EasyMoney
     @amount < 0
   end
 
+  def zero?
+    @amount.zero?
+  end
+
   def opposite
     self.class.new(self * -1)
   end

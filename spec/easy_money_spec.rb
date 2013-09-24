@@ -71,6 +71,11 @@ describe EasyMoney do
     specify { expect(EasyMoney.new( 1)).to_not be_negative }
   end
 
+  describe "#zero?" do
+    specify { expect(EasyMoney.new(0)).to be_zero }
+    specify { expect(EasyMoney.new(0.1)).to_not be_zero }
+  end
+
   describe "#opposite" do
     specify { expect(EasyMoney.new(0).opposite).to eq(0) }
     specify { expect(EasyMoney.new(1.23).opposite).to eq(-1.23) }
