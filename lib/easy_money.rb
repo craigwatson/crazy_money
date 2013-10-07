@@ -41,8 +41,8 @@ class EasyMoney
     self.class.new(self * -1)
   end
 
-  def cents(ratio = 100.0)
-    @amount * ratio
+  def cents(ratio = 100)
+    @amount * BigDecimal.new(ratio.to_s)
   end
 
   def + other; operation other; end
