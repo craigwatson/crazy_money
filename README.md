@@ -37,7 +37,7 @@ class ActiveRecord::Base
       attribute = attribute_cents.to_s.sub(/_cents$/, "")
 
       define_method attribute do
-        EasyMoney.new(send(attribute_cents)) / 100.0
+        EasyMoney.new(send(attribute_cents)) / 100
       end
 
       define_method "#{attribute}=" do |value|
