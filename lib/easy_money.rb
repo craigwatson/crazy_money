@@ -45,10 +45,10 @@ class EasyMoney
     @amount * BigDecimal.new(ratio.to_s)
   end
 
-  def + other; operation other; end
-  def - other; operation other; end
-  def / other; operation other; end
-  def * other; operation other; end
+  def + other; self.class.new(@amount + BigDecimal.new(other.to_s)); end
+  def - other; self.class.new(@amount - BigDecimal.new(other.to_s)); end
+  def / other; self.class.new(@amount / BigDecimal.new(other.to_s)); end
+  def * other; self.class.new(@amount * BigDecimal.new(other.to_s)); end
 
   # FIXME: needs polishing
   def with_currency iso_code
@@ -69,16 +69,6 @@ class EasyMoney
   end
 
 private
-
-  def operation other
-    operation = caller[0][/`.*'/][1..-2]
-
-    self.class.new(
-      @amount.public_send(
-        operation, BigDecimal.new(other.to_s)
-      )
-    )
-  end
 
   def currency iso_code
     ::CurrencyData.find(iso_code)
