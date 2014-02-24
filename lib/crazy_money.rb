@@ -1,7 +1,7 @@
 require "bigdecimal"
 require "currency_data"
 
-class EasyMoney
+class CrazyMoney
   include Comparable
 
   def self.zero

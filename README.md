@@ -1,4 +1,4 @@
-# EasyMoney
+# CrazyMoney
 
 This is a simplier version of the Money class which comes with the [Money Gem](https://github.com/RubyMoney/money).
 
@@ -8,17 +8,17 @@ Features:
 
 - doesn't monkey-patch [Ruby core types](https://github.com/RubyMoney/money/blob/master/lib/money/core_extensions.rb)
 - less than 100 lines of code
-- currency formatting support, e.g. `EasyMoney.new("1234.56").with_currency("NZD") #=> "$1,234.56"`
+- currency formatting support, e.g. `CrazyMoney.new("1234.56").with_currency("NZD") #=> "$1,234.56"`
 - easy to integrate with Rails (see [Rails](#rails))
 
 ## Usage
 
 ```ruby
-amount = EasyMoney.new("13.37")
+amount = CrazyMoney.new("13.37")
 amount > 1 #=> true
 amount == 13 #=> false
 amount == 13.37 #=> true
-amount == EasyMoney.new(13.37) #=> true
+amount == CrazyMoney.new(13.37) #=> true
 amount.cents.to_i #=> 1337
 amount.with_currency("NZD") #=> "$13.37"
 ```
@@ -29,7 +29,7 @@ At the moment, there is no built-in support for Rails but you can use this initi
 replacement for the `monetize` helper that is provided by the Money Gem.
 
 ```ruby
-# config/initializers/easy_money.rb
+# config/initializers/crazy_money.rb
 
 class ActiveRecord::Base
   class << self
@@ -37,11 +37,11 @@ class ActiveRecord::Base
       attribute = attribute_cents.to_s.sub(/_cents$/, "")
 
       define_method attribute do
-        EasyMoney.new(send(attribute_cents)) / 100
+        CrazyMoney.new(send(attribute_cents)) / 100
       end
 
       define_method "#{attribute}=" do |value|
-        send("#{attribute_cents}=", EasyMoney.new(value).cents)
+        send("#{attribute_cents}=", CrazyMoney.new(value).cents)
       end
     end
   end
