@@ -16,6 +16,10 @@ class CrazyMoney
     sprintf("%.2f", @amount)
   end
 
+  def inspect
+    "#<CrazyMoney amount=#{to_s}>"
+  end
+
   def == other
     @amount == BigDecimal.new(other.to_s)
   end

@@ -17,6 +17,11 @@ describe CrazyMoney do
     specify { expect(CrazyMoney.new(one_third).to_s).to eq("0.33") }
   end
 
+  describe "#inspect" do
+    specify { expect(CrazyMoney.new(0).inspect).to eq("#<CrazyMoney amount=0.00>") }
+    specify { expect(CrazyMoney.new("-13.37").inspect).to eq("#<CrazyMoney amount=-13.37>") }
+  end
+
   describe "#==" do
     specify { expect(CrazyMoney.new(0) == 0).to be_true }
     specify { expect(CrazyMoney.new(one_third) == one_third).to be_true }
