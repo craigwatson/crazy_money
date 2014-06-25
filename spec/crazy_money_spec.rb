@@ -23,10 +23,10 @@ describe CrazyMoney do
   end
 
   describe "#==" do
-    specify { expect(CrazyMoney.new(0) == 0).to be_true }
-    specify { expect(CrazyMoney.new(one_third) == one_third).to be_true }
-    specify { expect(CrazyMoney.new("1.23456789") == 1.23456789).to be_true }
-    specify { expect(CrazyMoney.new(1.23456789) == 1.23456789).to be_true }
+    specify { expect(CrazyMoney.new(0) == 0).to be true }
+    specify { expect(CrazyMoney.new(one_third) == one_third).to be true }
+    specify { expect(CrazyMoney.new("1.23456789") == 1.23456789).to be true }
+    specify { expect(CrazyMoney.new(1.23456789) == 1.23456789).to be true }
   end
 
   describe "arithmetic operations" do
@@ -93,8 +93,8 @@ describe CrazyMoney do
   end
 
   describe "comparison" do
-    specify { expect(CrazyMoney.new(10) > 0).to be_true }
-    specify { expect(CrazyMoney.new(10) > CrazyMoney.new(0)).to be_true }
+    specify { expect(CrazyMoney.new(10) > 0).to be true }
+    specify { expect(CrazyMoney.new(10) > CrazyMoney.new(0)).to be true }
 
     specify { expect([0, CrazyMoney.new(10)].max).to eq(10) }
     specify { expect([CrazyMoney.new(0), CrazyMoney.new(10)].max).to eq(10) }
