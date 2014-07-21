@@ -114,10 +114,11 @@ describe CrazyMoney do
     specify { expect(CrazyMoney.new("-13.37").with_currency("EUR")).to eq("€-13,37") }
     specify { expect(CrazyMoney.new("0").with_currency("EUR")).to eq("€0,00") }
 
-    specify { expect(CrazyMoney.new("-1234567.89").with_currency("USD")).to eq("$-1,234,567.89") }
-    specify { expect(CrazyMoney.new("-1234567.89").with_currency("EUR")).to eq("€-1.234.567,89") }
+    specify { expect(CrazyMoney.new("-1234567.89").with_currency("USD")).to eq("$-1 234 567.89") }
+    specify { expect(CrazyMoney.new("-1234567.89").with_currency("EUR")).to eq("€-1 234 567,89") }
 
-    specify { expect(CrazyMoney.new("13.37").with_currency("SEK")).to eq("13,37kr") }
+    specify { expect(CrazyMoney.new("13.37").with_currency("SEK")).to eq("13,37 kr") }
+    specify { expect(CrazyMoney.new("1337").with_currency("XPF")).to eq("1 337 CFP") }
   end
 end
 
