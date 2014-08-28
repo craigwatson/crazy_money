@@ -1,5 +1,10 @@
 # CrazyMoney
 
+[![Build Status](https://travis-ci.org/buckybox/crazy_money.svg)](https://travis-ci.org/buckybox/crazy_money)
+[![Dependency Status](http://img.shields.io/gemnasium/buckybox/crazy_money.svg)](https://gemnasium.com/buckybox/crazy_money)
+[![Code Climate](http://img.shields.io/codeclimate/github/buckybox/crazy_money.svg)](https://codeclimate.com/github/buckybox/crazy_money)
+[![Gem Version](http://img.shields.io/gem/v/crazy_money.svg)](https://rubygems.org/gems/crazy_money)
+
 This is a simplier version of the Money class which comes with the [Money Gem](https://github.com/RubyMoney/money).
 
 It doesn't try to handle currency conversions but simply wraps an amount of money into a [BigDecimal](http://www.ruby-doc.org/stdlib-2.0/libdoc/bigdecimal/rdoc/BigDecimal.html) instance to avoid precision issues with floating point arithmetic operations.
