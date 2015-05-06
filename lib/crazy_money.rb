@@ -88,7 +88,10 @@ class CrazyMoney
 private
 
   def thousands_separator
-    I18n.t("number.currency.format.thousands_separator", default: " ")
+    default = " ".freeze
+    I18n.t("number.currency.format.thousands_separator", default: default)
+  rescue I18n::InvalidLocale
+    default
   end
 
   def currency iso_code
