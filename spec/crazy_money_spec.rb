@@ -88,6 +88,17 @@ describe CrazyMoney do
     specify { expect(CrazyMoney.new(0).opposite).to be_a CrazyMoney }
   end
 
+  describe "#round" do
+    specify { expect(CrazyMoney.new(0).round).to eq(0) }
+    specify { expect(CrazyMoney.new(1.23).round).to eq(1) }
+    specify { expect(CrazyMoney.new(1.5).round).to eq(2) }
+    specify { expect(CrazyMoney.new(1.999999).round).to eq(2) }
+    specify { expect(CrazyMoney.new(-20).round).to eq(-20) }
+    specify { expect(CrazyMoney.new(-20.1).round).to eq(-20) }
+    specify { expect(CrazyMoney.new(-20.5).round).to eq(-21) }
+    specify { expect(CrazyMoney.new(0).round).to be_a CrazyMoney }
+  end
+
   describe "#cents" do
     specify { expect(CrazyMoney.new(1.23).cents).to eq(123) }
   end

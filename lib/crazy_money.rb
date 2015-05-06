@@ -56,6 +56,10 @@ class CrazyMoney
     self.class.new(self * -1)
   end
 
+  def round
+    self.class.new(@amount.round)
+  end
+
   def cents(ratio = 100)
     @amount * BigDecimal.new(ratio.to_s)
   end
