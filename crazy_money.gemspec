@@ -7,8 +7,8 @@ Gem::Specification.new do |spec|
   spec.version       = "1.2.1"
   spec.authors       = ["Cédric Félizard"]
   spec.email         = ["cedric@felizard.fr"]
-  spec.description   = %q{Simple money wrapper}
-  spec.summary       = %q{Crazy Money}
+  spec.description   = 'Simple money wrapper'
+  spec.summary       = 'Crazy Money'
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -23,4 +23,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", ">= 1.3"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec", ">= 3"
+  spec.add_development_dependency "rubocop"
 end

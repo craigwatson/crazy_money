@@ -15,7 +15,7 @@ class CrazyMoney
     new 0
   end
 
-  def initialize amount
+  def initialize(amount)
     @amount = BigDecimal.new(amount.to_s)
   end
 
@@ -28,15 +28,15 @@ class CrazyMoney
   end
 
   def inspect
-    "#<CrazyMoney amount=#{to_s}>"
+    "#<CrazyMoney amount=#{self}>"
   end
 
-  def == other
+  def ==(other)
     @amount == BigDecimal.new(other.to_s)
   end
   alias_method :eql?, :==
 
-  def <=> other
+  def <=>(other)
     @amount <=> BigDecimal.new(other.to_s)
   end
 
@@ -64,21 +64,24 @@ class CrazyMoney
     @amount * BigDecimal.new(ratio.to_s)
   end
 
-  def + other; self.class.new(@amount + BigDecimal.new(other.to_s)); end
-  def - other; self.class.new(@amount - BigDecimal.new(other.to_s)); end
-  def / other; self.class.new(@amount / BigDecimal.new(other.to_s)); end
-  def * other; self.class.new(@amount * BigDecimal.new(other.to_s)); end
+  def +(other); self.class.new(@amount + BigDecimal.new(other.to_s)); end
+
+  def -(other); self.class.new(@amount - BigDecimal.new(other.to_s)); end
+
+  def /(other); self.class.new(@amount / BigDecimal.new(other.to_s)); end
+
+  def *(other); self.class.new(@amount * BigDecimal.new(other.to_s)); end
 
   # FIXME: needs polishing
-  def with_currency iso_code
+  def with_currency(iso_code)
     currency = currency(iso_code) || raise(ArgumentError, "Unknown currency: #{iso_code.inspect}")
 
     left, right = to_s(decimal_places: currency.decimal_places).split(".")
     decimal_mark = right.nil? ? "" : currency.decimal_mark
     sign = left.slice!("-")
 
-    left = left.reverse.scan(/.{1,3}/).map(&:reverse).reverse. # split every 3 digits right-to-left
-      join(thousands_separator)
+    left = left.reverse.scan(/.{1,3}/).map(&:reverse).reverse # split every 3 digits right-to-left
+           .join(thousands_separator)
 
     formatted = [sign, left, decimal_mark, right].join
 
@@ -98,7 +101,7 @@ private
     default
   end
 
-  def currency iso_code
+  def currency(iso_code)
     ::CurrencyData.find(iso_code)
   end
 end

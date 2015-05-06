@@ -12,4 +12,3 @@ require "stackprof"
 StackProf.run(mode: :cpu, out: "stackprof.dump") do
   n.times { CrazyMoney.new(1337) / 100 }
 end
-

@@ -66,14 +66,14 @@ describe CrazyMoney do
 
   describe "#positive?" do
     specify { expect(CrazyMoney.new(-1)).to_not be_positive }
-    specify { expect(CrazyMoney.new( 0)).to_not be_positive }
-    specify { expect(CrazyMoney.new( 1)).to     be_positive }
+    specify { expect(CrazyMoney.new(0)).to_not be_positive }
+    specify { expect(CrazyMoney.new(1)).to be_positive }
   end
 
   describe "#negative?" do
-    specify { expect(CrazyMoney.new(-1)).to     be_negative }
-    specify { expect(CrazyMoney.new( 0)).to_not be_negative }
-    specify { expect(CrazyMoney.new( 1)).to_not be_negative }
+    specify { expect(CrazyMoney.new(-1)).to be_negative }
+    specify { expect(CrazyMoney.new(0)).to_not be_negative }
+    specify { expect(CrazyMoney.new(1)).to_not be_negative }
   end
 
   describe "#zero?" do
@@ -132,4 +132,3 @@ describe CrazyMoney do
     specify { expect(CrazyMoney.new("1337").with_currency("XPF")).to eq("1 337 CFP") }
   end
 end
-
