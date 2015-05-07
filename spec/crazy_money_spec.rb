@@ -110,6 +110,8 @@ RSpec.describe CrazyMoney do
     specify { expect(CrazyMoney.new(1.23).round).to eq(1) }
     specify { expect(CrazyMoney.new(1.5).round).to eq(2) }
     specify { expect(CrazyMoney.new(1.999999).round).to eq(2) }
+    specify { expect(CrazyMoney.new(1.2345).round(2)).to eq(1.23) }
+    specify { expect(CrazyMoney.new(1.2345).round(5)).to eq(1.2345) }
     specify { expect(CrazyMoney.new(-20).round).to eq(-20) }
     specify { expect(CrazyMoney.new(-20.1).round).to eq(-20) }
     specify { expect(CrazyMoney.new(-20.5).round).to eq(-21) }

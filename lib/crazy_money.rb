@@ -70,8 +70,8 @@ class CrazyMoney
     self.class.new(self * -1)
   end
 
-  def round
-    self.class.new(@amount.round)
+  def round(*args)
+    self.class.new(@amount.round(*args))
   end
 
   def cents(ratio = 100)
