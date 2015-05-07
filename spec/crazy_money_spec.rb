@@ -2,7 +2,7 @@
 
 require "crazy_money"
 
-describe CrazyMoney do
+RSpec.describe CrazyMoney do
   let(:one_third) { BigDecimal.new(1) / BigDecimal.new(3) }
 
   describe ".zero" do
