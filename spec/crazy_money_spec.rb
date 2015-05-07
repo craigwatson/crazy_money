@@ -17,6 +17,23 @@ RSpec.describe CrazyMoney do
     specify { expect(CrazyMoney.new(one_third).to_s).to eq("0.33") }
   end
 
+  describe "#to_i" do
+    specify { expect(CrazyMoney.new(0).to_i).to eq(0) }
+    specify { expect(CrazyMoney.new("13.37").to_i).to eq(13) }
+    specify { expect(CrazyMoney.new("13.99").to_i).to eq(13) }
+  end
+
+  describe "#to_k" do
+    specify { expect(CrazyMoney.new(0).to_k).to eq("0") }
+    specify { expect(CrazyMoney.new("13.37").to_k).to eq("13") }
+    specify { expect(CrazyMoney.new("13.99").to_k).to eq("14") }
+    specify { expect(CrazyMoney.new("1000").to_k).to eq("1k") }
+    specify { expect(CrazyMoney.new("1337").to_k).to eq("1k") }
+    specify { expect(CrazyMoney.new("1937").to_k).to eq("2k") }
+    specify { expect(CrazyMoney.new("-1937").to_k).to eq("-2k") }
+    specify { expect(CrazyMoney.new("1E5").to_k).to eq("100k") }
+  end
+
   describe "#inspect" do
     specify { expect(CrazyMoney.new(0).inspect).to eq("#<CrazyMoney amount=0.00>") }
     specify { expect(CrazyMoney.new("-13.37").inspect).to eq("#<CrazyMoney amount=-13.37>") }

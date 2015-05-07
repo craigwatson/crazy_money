@@ -37,3 +37,6 @@ Style/Documentation:
 
 Style/FormatString:
   Enabled: false
+
+Performance/ParallelAssignment:
+  Enabled: false

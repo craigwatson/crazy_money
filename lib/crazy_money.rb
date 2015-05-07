@@ -27,6 +27,20 @@ class CrazyMoney
     sprintf("%.#{decimal_places}f", @amount)
   end
 
+  def to_i
+    @amount.to_i
+  end
+
+  def to_k
+    if @amount.abs < 1E3
+      amount, suffix = @amount, ""
+    else
+      amount, suffix = (@amount / 1E3), "k"
+    end
+
+    "#{amount.round.to_i}#{suffix}".freeze
+  end
+
   def inspect
     "#<CrazyMoney amount=#{self}>"
   end
