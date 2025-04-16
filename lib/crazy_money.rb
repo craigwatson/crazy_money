@@ -16,7 +16,7 @@ class CrazyMoney
   end
 
   def initialize(amount)
-    @amount = BigDecimal.new(amount.to_s)
+    @amount = BigDecimal(amount.to_s)
   end
 
   def to_s(decimal_places: 2)
@@ -46,12 +46,12 @@ class CrazyMoney
   end
 
   def ==(other)
-    @amount == BigDecimal.new(other.to_s)
+    @amount == BigDecimal(other.to_s)
   end
   alias_method :eql?, :==
 
   def <=>(other)
-    @amount <=> BigDecimal.new(other.to_s)
+    @amount <=> BigDecimal(other.to_s)
   end
 
   def positive?
@@ -75,16 +75,16 @@ class CrazyMoney
   end
 
   def cents(ratio = 100)
-    @amount * BigDecimal.new(ratio.to_s)
+    @amount * BigDecimal(ratio.to_s)
   end
 
-  def +(other); self.class.new(@amount + BigDecimal.new(other.to_s)); end
+  def +(other); self.class.new(@amount + BigDecimal(other.to_s)); end
 
-  def -(other); self.class.new(@amount - BigDecimal.new(other.to_s)); end
+  def -(other); self.class.new(@amount - BigDecimal(other.to_s)); end
 
-  def /(other); self.class.new(@amount / BigDecimal.new(other.to_s)); end
+  def /(other); self.class.new(@amount / BigDecimal(other.to_s)); end
 
-  def *(other); self.class.new(@amount * BigDecimal.new(other.to_s)); end
+  def *(other); self.class.new(@amount * BigDecimal(other.to_s)); end
 
   # FIXME: needs polishing
   def with_currency(iso_code)

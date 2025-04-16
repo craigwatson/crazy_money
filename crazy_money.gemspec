@@ -4,9 +4,9 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "crazy_money"
-  spec.version       = "1.4.0"
-  spec.authors       = ["Cédric Félizard"]
-  spec.email         = ["cedric@felizard.fr"]
+  spec.version       = "1.4.1"
+  spec.authors       = ["Cédric Félizard", "Craig Watson"]
+  spec.email         = ["cedric@felizard.fr", "craig@cwatson.org"]
   spec.description   = 'Simple money wrapper'
   spec.summary       = 'Crazy Money'
   spec.homepage      = ""
