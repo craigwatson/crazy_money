@@ -12,7 +12,7 @@ class CrazyMoney
   end
 
   def self.zero
-    new 0
+    new 0.to_i
   end
 
   def initialize(amount)
