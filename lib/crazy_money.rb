@@ -31,10 +31,6 @@ class CrazyMoney
     @amount.to_i
   end
 
-  def to_f
-    @amount.to_f
-  end
-
   def to_k
     if @amount.abs < 1E3
       amount, suffix = @amount, ""
@@ -82,13 +78,21 @@ class CrazyMoney
     @amount * BigDecimal(ratio.to_s)
   end
 
-  def +(other); self.class.new(@amount + BigDecimal(other.to_s)); end
+  def +(other)
+    self.class.new(@amount + BigDecimal(other.to_s))
+  end
 
-  def -(other); self.class.new(@amount - BigDecimal(other.to_s)); end
+  def -(other)
+    self.class.new(@amount - BigDecimal(other.to_s))
+  end
 
-  def /(other); self.class.new(@amount / BigDecimal(other.to_s)); end
+  def /(other)
+    self.class.new(@amount / BigDecimal(other.to_s))
+  end
 
-  def *(other); self.class.new(@amount * BigDecimal(other.to_s)); end
+  def *(other)
+    self.class.new(@amount * BigDecimal(other.to_s))
+  end
 
   # FIXME: needs polishing
   def with_currency(iso_code)

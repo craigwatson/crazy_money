@@ -3,7 +3,7 @@
 require "crazy_money"
 
 RSpec.describe CrazyMoney do
-  let(:one_third) { BigDecimal.new(1) / BigDecimal.new(3) }
+  let(:one_third) { BigDecimal(1) / BigDecimal(3) }
 
   describe ".zero" do
     specify { expect(CrazyMoney.zero).to eq(CrazyMoney.new(0)) }
@@ -52,32 +52,34 @@ RSpec.describe CrazyMoney do
     end
 
     before do
-      @a = CrazyMoney.new(2)
-      @b = CrazyMoney.new(3)
+      @a_ = 2.23
+      @b_ = 3.53
+      @a = CrazyMoney.new(@a_)
+      @b = CrazyMoney.new(@b_)
     end
 
     describe "#+" do
       before { @result = @a + @b }
       it_behaves_like "it returns a CrazyMoney object"
-      specify { expect(@result).to eq(5) }
+      specify { expect(@result).to eq(BigDecimal(@a_.to_s) + BigDecimal(@b_.to_s)) }
     end
 
     describe "#-" do
       before { @result = @a - @b }
       it_behaves_like "it returns a CrazyMoney object"
-      specify { expect(@result).to eq(-1) }
+      specify { expect(@result).to eq(BigDecimal(@a_.to_s) - BigDecimal(@b_.to_s)) }
     end
 
     describe "#*" do
       before { @result = @a * @b }
       it_behaves_like "it returns a CrazyMoney object"
-      specify { expect(@result).to eq(6) }
+      specify { expect(@result).to eq(BigDecimal(@a_.to_s) * BigDecimal(@b_.to_s)) }
     end
 
     describe "#/" do
       before { @result = @a / @b }
       it_behaves_like "it returns a CrazyMoney object"
-      specify { expect(@result).to eq(BigDecimal.new(2) / BigDecimal.new(3)) }
+      specify { expect(@result).to eq(BigDecimal(@a_.to_s) / BigDecimal(@b_.to_s)) }
     end
   end
 
