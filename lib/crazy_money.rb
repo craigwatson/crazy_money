@@ -31,6 +31,10 @@ class CrazyMoney
     @amount.to_i
   end
 
+  def to_f
+    @amount.to_f
+  end
+
   def to_k
     if @amount.abs < 1E3
       amount, suffix = @amount, ""
