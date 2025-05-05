@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "crazy_money"
-  spec.version       = "1.4.2"
+  spec.version       = "1.5.0"
   spec.authors       = ["Cédric Félizard", "Craig Watson"]
   spec.email         = ["cedric@felizard.fr", "craig@cwatson.org"]
   spec.description   = 'Simple money wrapper'
@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-spec.required_ruby_version = '>= 3.1.0'
+spec.required_ruby_version = '>= 3.0.0'
 
   spec.add_runtime_dependency "i18n", ">= 0.7"
   spec.add_runtime_dependency "currency_data", ">= 1.1.0"
